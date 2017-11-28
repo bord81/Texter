@@ -1,8 +1,12 @@
 apply plugin: 'com.android.application'
 
+def TWITTER_CONS_KEY = '"' + TwitterConsumerKey + '"' ?: '"Consumer Key not found'
+def TWITTER_PRIV_CONS_KEY = '"' + TwitterConsumerSecretKey + '"' ?: '"Consumer Secret Key not found'
+def STRING = 'String'
+
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "labut.md311.texter"
         minSdkVersion 16
@@ -10,6 +14,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        each { type ->
+            type.buildConfigField STRING, 'TwitterConsumerKey', TWITTER_CONS_KEY
+            type.buildConfigField STRING, 'TwitterConsumerSecretKey', TWITTER_PRIV_CONS_KEY
+        }
+        manifestPlaceholders = [
+                TWITTER_CONS_ID     : TWITTER_CONS_KEY,
+                TWITTER_PRIV_CONS_ID: TWITTER_PRIV_CONS_KEY
+        ]
+    }
+    dataBinding {
+        enabled = true
     }
     buildTypes {
         release {
@@ -17,14 +32,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:support-v4:25.4.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.4.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.twitter.sdk.android:twitter-core:3.1.1'
+    compile 'com.twitter.sdk.android:tweet-ui:3.1.1'
     testCompile 'junit:junit:4.12'
 }
