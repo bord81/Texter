@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constr_tweet_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/st_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <ImageView
+        android:id="@+id/st_img_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/rec_view_elems_desc"
+        android:src="#ffffff"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/st_toolbar" />
+
+    <TextView
+        android:id="@+id/st_text_view_retweeted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/rec_view_elems_desc"
+        android:textStyle="italic"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="@id/st_img_avatar"
+        app:layout_constraintTop_toBottomOf="@id/st_toolbar" />
+
+    <TextView
+        android:id="@+id/st_text_view_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/rec_view_elems_desc"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/st_img_avatar"
+        app:layout_constraintTop_toBottomOf="@id/st_text_view_retweeted" />
+
+    <TextView
+        android:id="@+id/st_text_view_header_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/rec_view_elems_desc"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toRightOf="@id/st_text_view_header"
+        app:layout_constraintTop_toBottomOf="@id/st_text_view_retweeted" />
+
+    <TextView
+        android:id="@+id/st_text_view_created_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/rec_view_elems_desc"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toRightOf="@id/st_text_view_header_at"
+        app:layout_constraintTop_toBottomOf="@id/st_text_view_retweeted" />
+
+    <TextView
+        android:id="@+id/st_text_view_body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/rec_view_elems_desc"
+        android:textColorLink="@android:color/holo_blue_dark"
+        app:layout_constraintLeft_toRightOf="@id/st_img_avatar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/st_text_view_header"
+        app:layout_constraintWidth_default="wrap" />
+
+    <ImageView
+        android:id="@+id/st_img_retweets"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:tint="#9E9E9E"
+
+        android:contentDescription="@string/rec_view_elems_desc"
+        android:src="@mipmap/ic_swap_horiz_black_36dp"
+
+        app:layout_constraintStart_toStartOf="@+id/st_guideline3"
+        app:layout_constraintTop_toBottomOf="@id/st_text_view_body" />
+
+    <TextView
+        android:id="@+id/st_text_view_retweets_count"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/rec_view_elems_desc"
+
+        android:textColorLink="@android:color/holo_blue_dark"
+        app:layout_constraintStart_toStartOf="@+id/st_guideline4"
+        app:layout_constraintTop_toBottomOf="@id/st_text_view_body"
+        app:layout_constraintWidth_default="wrap" />
+
+    <ImageView
+        android:id="@+id/st_img_likes"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/rec_view_elems_desc"
+        android:src="@mipmap/ic_thumb_up_black_36dp"
+        android:tint="#9E9E9E"
+        app:layout_constraintStart_toStartOf="@id/st_guideline5"
+        app:layout_constraintTop_toBottomOf="@id/st_text_view_body" />
+
+    <TextView
+        android:id="@+id/st_text_view_likes_count"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+
+        android:contentDescription="@string/rec_view_elems_desc"
+
+        android:textColorLink="@android:color/holo_blue_dark"
+        app:layout_constraintStart_toStartOf="@id/st_guideline"
+        app:layout_constraintTop_toBottomOf="@id/st_text_view_body"
+        app:layout_constraintWidth_default="wrap" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/st_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="53dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/st_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="80dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/st_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="152dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/st_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="189dp" />
+
+</android.support.constraint.ConstraintLayout>
