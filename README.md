@@ -9,4 +9,4 @@ The news feed presented is a 'home timeline' for the logged in user. You can 'li
 
 Under the hood it uses Retrofit and Picasso for requesting data from Twitter REST APIs.
 The example source code as well as APK can be found here.
-If you are also intersted in Twitter apps development, you may also find a small util called 'twac' in the 'useful-stuff' repo.
+If you are interested in Twitter apps development, you may also take a look at small util called 'twac' in the 'useful-stuff' repo.
