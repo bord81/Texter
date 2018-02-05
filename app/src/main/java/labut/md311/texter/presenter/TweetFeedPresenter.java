@@ -39,7 +39,8 @@ public class TweetFeedPresenter {
     public static Credentials userCredentials;
     public static ArrayList<RetweetToDeleteResponse> toDeleteResponses;
     private static int positionOnPrevious;
-
+    long top_fallback = 0L;
+    
     WeakReference<TweetFeedAct> tweetFeedActWeakReference;
 
 
@@ -58,6 +59,7 @@ public class TweetFeedPresenter {
 
     public void initFirstLoad(long topItem) {
         loadTimeline(topItem, true);
+        top_fallback = topItem;
     }
 
     public void loadPrevItems() {
@@ -121,6 +123,8 @@ public class TweetFeedPresenter {
                 map.put("max_id", String.valueOf(topItem));
             } else if (feedItems != null && feedItems.size() > 1) {
                 map.put("since_id", String.valueOf(feedItems.get(0).getId()));
+            } else if (top_fallback > 0) {
+                map.put("since_id", String.valueOf(top_fallback));
             }
             apiTwitter.getHomeTimeline(map).enqueue(new Callback<List<FeedItem>>() {
                 @Override
