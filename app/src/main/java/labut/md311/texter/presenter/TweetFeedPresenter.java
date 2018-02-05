@@ -40,6 +40,7 @@ public class TweetFeedPresenter {
     public static ArrayList<RetweetToDeleteResponse> toDeleteResponses;
     private static int positionOnPrevious;
     long top_fallback = 0L;
+    int retry_count = 0;
     
     WeakReference<TweetFeedAct> tweetFeedActWeakReference;
 
@@ -135,8 +136,14 @@ public class TweetFeedPresenter {
                     } else {
                         ArrayList<FeedItem> newFeedItems = (ArrayList<FeedItem>) response.body();
                         if (feedItems == null) {
-                            feedItems = newFeedItems;
-                            tweetFeedActWeakReference.get().setAdapter(new WeakReference<ArrayList<FeedItem>>(feedItems), -1);
+                           if (newFeedItems.size() > 0 || retry_count > 4) {
+                                retry_count = 0;
+                                feedItems = newFeedItems;
+                                tweetFeedActWeakReference.get().setAdapter(new WeakReference<ArrayList<FeedItem>>(feedItems), -1);
+                            } else {
+                                retry_count++;
+                                tweetFeedActWeakReference.get().readSavedTop();
+                            }
                         } else {
                             if (newFeedItems.size() > 0) {
                                 feedItems.addAll(0, newFeedItems);
